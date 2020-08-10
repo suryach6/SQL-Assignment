@@ -1,0 +1,109 @@
+
+EXCERCISE-1
+
+
+1.SELECT title,book_num FROM book_file WHERE year>=1984;
+
+2.SELECT * FROM book_file WHERE year<1984 OR year>1986;
+
+3.SELECT pubname,pubaddress FROM Publisher ORDER BY pubname desc;
+
+4.SELECT * FROM book_file where year  BETWEEN 1985 and 1987;
+
+5.SELECT count(book_num) FROM book_file;
+
+6.SELECT max(edition) FROM book_file;
+
+7.SELECT book_num,topics titles FROM book_file WHERE topics LIKE 'data%'; 
+
+8.SELECT pubcode,pubname pubaddress FROM Publisher WHERE name LIKE 'A' AND pubcode<P5; 
+
+9.SELECT DISTINCT topic FROM book_file;
+
+---------------------------------------------------------------------------------------------------------
+
+
+EXCERCISE-2
+
+
+1.CREATE table Employee(
+EmpNo varchar(3) UNIQUE,
+Name varchar(10) NOT NULL,
+DeptNo varchar(3) NOT NULL
+);
+
+2.INSERT INTO Employee VALUES('E1','Sandy','D1');
+
+3.ALTER table Employee ADD RoomNo varchar(10);
+
+4.UPDATE Employee SET RoomNo='R1' WHERE DeptNo='D2';
+
+5.UPDATE Employee SET RoomNo='R2' WHERE EmpNo='E6';
+UPDATE Employee SET RoomNo='R3' WHERE EmpNo='E7';
+UPDATE Employee SET RoomNo='R4' WHERE EmpNo='E8';
+
+6.UPDATE Employee SET Name='Fido' where Name='Mog';
+
+7.ALTER table Employee DROP COLUMN Name;
+
+8.DELETE from Employee WHERE DeptNo='D2';
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+EXCERCISE-3
+
+1.SELECT Branchname FROM Branch b join Area a on b.area_code=a.area_code WHERE manager='Bloggs';
+
+2.SELECT avg(product_price) from Product;
+
+3.SELECT max(product_price) from Product;
+
+4.SELECT town FROM Product LEFT JOIN Stock ON Product.product_code = Stock.product_code LEFT JOIN Branch ON Branch.branch_code = Stock.branch_code
+  WHERE prod_desc="Posh-Dress";
+
+
+-------------------------------------------------------------------------------------------------------------
+
+
+EXCERCISE-4
+
+1.SELECT EmpNum,EmpFirstName||' '||EmpLastName as EmpName FROM Employee;
+
+2.SELECT * FROM Computer;
+
+3.SELECT MfgModel FROM Computer WHERE ProType='486DX';
+
+4.SELECT TagNum FROM PC WHERE EmpNum=124 and location='Home';
+
+5.SELECT TagNum,CompID FROM PC WHERE location<>'Home';
+
+7.SELECT TagNum,PackID FROM Software WHERE SoftCost BETWEEN 200 and 500;
+
+8.SELECT TagNum,PackID,(Softcost*0.95) as DiscountedSoftwareCost FROM Software;
+
+9.SELECT TagNum,PackID,(Softcost*0.95) as DiscountedSoftwareCost FROM Software WHERE DiscountedSoftwareCost >=400;
+
+10.SELECT PackID,PackName FROM Package WHERE PackType IN('Database') OR ('Spreadsheet');
+
+11.SELECT EmpNum,EmpFirstName||' '||EmpLastName as EmpName FROM Employee WHERE EmpLastName='Fienstein';
+
+12.SELECT * FROM Package ORDER BY PackName;
+
+13.SELECT * FROM Package GROUP BY PackType ORDER BY PackCost desc;
+
+14.SELECT count(PackID) AS "Number Of Packages" FROM Package WHERE PackCost>400;
+
+15.SELECT avg(PackCost) AS "Average of Pack Cost" FROM Package WHERE PackType='Word Processing';
+
+16.SELECT PackID,PackName FROM Package WHERE PackCost>(select avg(PackCost) FROM Package);
+
+17.SELECT pc.TagNum,pc.CompID,c.MfgName FROM PC p JOIN  Computer c on p.CompID=c.CompID;
+
+18.SELECT pc.TagNum,pc.CompID,c.MfgName FROM PC p JOIN  Computer c on p.CompID=c.CompID WHERE EmpNum=124;
+
+19.SELECT e.EmpNum,e.EmpFirstName||' '||e.EmpLastName as EmpName FROM Employee e join PC p on e.EmpNum=p.EmpNum WHERE location<>'Home';
+
+20.SELECT Software.TagNum,PackType,PackName,PackVer,CompId FROM PC LEFT JOIN Software ON Software.TagNum = PC.TagNum LEFT JOIN Package ON Software.PackId = Package.PackId;
+
